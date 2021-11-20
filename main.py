@@ -65,7 +65,10 @@ def dayOfTheWeek():
     dayNumber = d.weekday() - 1
     return(days[dayNumber])
 
-if d.strftime("%d") == funcDateData()[5:7]:
+date = funcDateData()[8:10]
+date = int(date)-1
+
+if d.strftime("%d") == date:
     print('true')
 else:
     print('false')
