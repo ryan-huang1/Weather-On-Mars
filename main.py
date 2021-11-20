@@ -95,4 +95,3 @@ api = tweepy.API(oauth)
 f = open("dates.txt", "w")
 f.write(date)
 f.close()
-
