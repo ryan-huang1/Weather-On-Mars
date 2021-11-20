@@ -56,13 +56,13 @@ def funcSunsetData():
     return(tempatureData)
 
 def randomPositveWord():
-    words = ["great", "beautiful", "amazing", "good", "excellent", "marvelous", "superb", "wonderful"]
+    words = ["great", "beautiful", "amazing", "excellent", "marvelous", "superb", "wonderful", "awesome", "incredible", "stunning", "majestic", "magnificent", "awe-inspiring", "spectacular", "fabulous", "dazzling"]
     positive_word = random.choice(words)
     return(positive_word)
 
 def dayOfTheWeek():
     days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    dayNumber = d.weekday() - 1
+    dayNumber = d.weekday()
     return(days[dayNumber])
 
 date = funcDateData()[8:10]
@@ -70,8 +70,18 @@ date = funcDateData()[8:10]
 f = open("dates.txt", "r")
 lastdate = f.readline()[0:2]
 
+def weatherTweet():
+    weatherUpdate = f'Good morning fellow astronaut! Today’s a {randomPositveWord()} {dayOfTheWeek()} in the Jezero Crater. It\'s currently {funcSeasonData()}, with a high of {funcMaxTempData()} and low of {funcMinTempData()}. Sunrise is at {funcSunriseData()}, sunset is at {funcSunsetData()}. Have a nice day! \U0001F44B'
+
+    f = open("tweets.txt", "a")
+    f.write(f'{d} {weatherUpdate}\n\n')
+    f.close()
+    
+    print('weather tweet posted')
+    return(weatherUpdate)
+
 if str(lastdate) == str(date):
-    print('true')
+    print(weatherTweet())
 else:
     print('false')
 
@@ -79,7 +89,7 @@ else:
 oauth = OAuth()
 api = tweepy.API(oauth)
 
-#api.update_status('well there buddy hello testing')
+#api.update_status('testing testing')
 #print('tweet posted')
 
 f = open("dates.txt", "w")
