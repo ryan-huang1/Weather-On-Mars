@@ -66,9 +66,11 @@ def dayOfTheWeek():
     return(days[dayNumber])
 
 date = funcDateData()[8:10]
-date = int(date)-1
 
-if d.strftime("%d") == date:
+f = open("dates.txt", "r")
+lastdate = f.readline()[0:2]
+
+if str(lastdate) == str(date):
     print('true')
 else:
     print('false')
@@ -79,4 +81,8 @@ api = tweepy.API(oauth)
 
 #api.update_status('well there buddy hello testing')
 #print('tweet posted')
+
+f = open("dates.txt", "w")
+f.write(date)
+f.close()
 
