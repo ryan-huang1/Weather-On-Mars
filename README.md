@@ -8,7 +8,7 @@ This is a Twitter bot that will tweet the weather from Mars daily! Data from the
 
 ## License
 
-> Read the [licence](general/LICENSE)
+> Read the [licence](/LICENSE)
 >
 Weather-On-Mars is licensed under `GNU General Public License v3.0`
 
