@@ -1,4 +1,6 @@
+import datetime
 import requests
+import random
 import tweepy
 import json
 import os
@@ -26,11 +28,6 @@ def funcDateData():
     tempatureData = weatherJSON['sols'][6]['terrestrial_date']
     return(tempatureData)
 
-def funcSolData():
-    weatherJSON = funcWeatherJSON()
-    tempatureData = weatherJSON['sols'][6]['sol']
-    return(tempatureData)
-
 def funcSeasonData():
     weatherJSON = funcWeatherJSON()
     tempatureData = weatherJSON['sols'][6]['season']
@@ -46,11 +43,6 @@ def funcMaxTempData():
     tempatureData = weatherJSON['sols'][6]['max_temp']
     return(tempatureData)
 
-def funcPressureData():
-    weatherJSON = funcWeatherJSON()
-    tempatureData = weatherJSON['sols'][6]['pressure']
-    return(tempatureData)
-
 def funcSunriseData():
     weatherJSON = funcWeatherJSON()
     tempatureData = weatherJSON['sols'][6]['sunrise']
@@ -61,11 +53,24 @@ def funcSunsetData():
     tempatureData = weatherJSON['sols'][6]['sunset']
     return(tempatureData)
 
+def randomPositveWord():
+    words = ["great", "beautiful", "amazing", "good", "excellent", "marvelous", "superb", "wonderful"]
+    positive_word = random.choice(words)
+    return(positive_word)
+
+d = datetime.datetime.now()
+
+if d.strftime("%d") == funcDateData()[5:7]:
+    print('true')
+else:
+    print('false')
+
+
 
 #post tweet/status
 oauth = OAuth()
 api = tweepy.API(oauth)
 
-api.update_status('well there buddy hello testing')
-print('tweet posted')
+#api.update_status('well there buddy hello testing')
+#print('tweet posted')
 
