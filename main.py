@@ -1,19 +1,23 @@
-import requests
-import json
 import os
+import tweepy
 
-url = 'https://discord.com/api/v9/users/@me/settings'
+#variables for accessing twitter API
+consumer_key=os.environ['consumer_key']
+consumer_secret_key=os.environ['consumer_secret_key']
+access_token=os.environ['access_token']
+access_token_secret=os.environ['access_token_secret']
 
-data = {
-    {'custom_status': {'text': 'coolbenio'}}
-}
+def OAuth():
 
-headers = {
-    'authorization': os.getenv('authkey'),
-    'content-type': 'application/json'
-}
+    try:
+        auth=tweepy.OAuthHandler(consumer_key, consumer_secret_key)
+        auth.set_access_token(access_token, access_token_secret)
+        return auth
+    except Exception as e:
+        return None
 
-response = requests.patch(url, data=data, headers=headers)
+oauth = OAuth()
+api = tweepy.API(oauth)
 
-response = json.loads(response.text)
-print(response)
+api.update_status('well there buddy')
+print('tweet posted')
