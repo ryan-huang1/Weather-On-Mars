@@ -11,6 +11,8 @@ consumer_secret_key=os.environ['consumer_secret_key']
 access_token=os.environ['access_token']
 access_token_secret=os.environ['access_token_secret']
 
+d = datetime.datetime.now()
+
 def OAuth():
     auth=tweepy.OAuthHandler(consumer_key, consumer_secret_key)
     auth.set_access_token(access_token, access_token_secret)
@@ -58,14 +60,15 @@ def randomPositveWord():
     positive_word = random.choice(words)
     return(positive_word)
 
-d = datetime.datetime.now()
+def dayOfTheWeek():
+    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    dayNumber = d.weekday() - 1
+    return(days[dayNumber])
 
 if d.strftime("%d") == funcDateData()[5:7]:
     print('true')
 else:
     print('false')
-
-
 
 #post tweet/status
 oauth = OAuth()
