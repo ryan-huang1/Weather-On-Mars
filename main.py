@@ -106,7 +106,6 @@ def main():
             print(weatherTweet())
             print('weather update posted')
 
-
     #post tweet/status
     oauth = OAuth()
     api = tweepy.API(oauth)
