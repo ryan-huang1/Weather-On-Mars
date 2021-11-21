@@ -99,11 +99,13 @@ def main():
     def mainFunction():
         if str(lastdate) == str(date):
             api.update_status(noWeatherTweet())
+            print(noWeatherTweet())
             print('no update posted')
         else:
             api.update_status(weatherTweet())
-            print('weather update posted')
             print(weatherTweet())
+            print('weather update posted')
+
 
     #post tweet/status
     oauth = OAuth()
