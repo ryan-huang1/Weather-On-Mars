@@ -87,7 +87,7 @@ def main():
         return(weatherUpdate)
 
     def noWeatherTweet():
-        responses = ["sending data back to Earth", "fueling rockets", "collecting samples", "saving energy", "greeting new astronauts", "driving around", "scanning mars's surface", "taking videos of Ingenuity", "hanging out with Curiosity", "texting Zhurong", "taking with mission control", "visiting Opportunity", "talking with my satilite buddies", "finding water", "trying to find new microbial friends", "trying to produce oxygen"]
+        responses = ["sending data back to Earth", "fueling rockets", "collecting samples", "saving energy", "greeting new astronauts", "driving around", "scanning Mars's surface", "taking videos of Ingenuity", "hanging out with Curiosity", "texting Zhurong", "taking with mission control", "visiting Opportunity", "talking with my satilite buddies", "finding water", "trying to find new microbial friends", "trying to produce oxygen"]
         tweet = random.choice(responses)
 
         f = open("tweets.txt", "a")
