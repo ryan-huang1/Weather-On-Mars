@@ -94,7 +94,7 @@ def main():
         f.write(f'{d} {tweet}\n\n')
         f.close()
 
-        return(f'Sorry no new update today, I was too busy {tweet}. Check back tomorrow! \U0001F44B')
+        return(f'Sorry no new update today, I was busy {tweet}. Check back tomorrow! \U0001F44B')
 
     def mainFunction():
         if str(lastdate) == str(date):
@@ -116,7 +116,9 @@ def main():
     f.write(date)
     f.close()
 
-schedule.every().day.at("04:00").do(main)
+main()
+
+schedule.every().day.at("14:00").do(main)
 
 while True:
     schedule.run_pending()
