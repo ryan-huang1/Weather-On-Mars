@@ -117,8 +117,6 @@ def main():
     f.write(date)
     f.close()
 
-main()
-
 schedule.every().day.at("04:00").do(main)
 
 while True:
