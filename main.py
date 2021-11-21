@@ -94,13 +94,12 @@ def main():
         f.write(f'{d} {tweet}\n\n')
         f.close()
 
-        return(f'Sorry no update today, I was too busy {tweet}. Check back tomorrow! \U0001F44B')
+        return(f'Sorry no new update today, I was too busy {tweet}. Check back tomorrow! \U0001F44B')
 
     def mainFunction():
         if str(lastdate) == str(date):
             api.update_status(noWeatherTweet())
             print('no update posted')
-            print('false')
         else:
             api.update_status(weatherTweet())
             print('weather update posted')
