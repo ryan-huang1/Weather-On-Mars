@@ -88,13 +88,15 @@ def main():
 
     def noWeatherTweet():
         responses = ["sending data back to Earth", "fueling rockets", "collecting samples", "saving energy for the storm ahead", "greeting new astronauts", "driving around", "scanning Mars's surface", "taking videos of Ingenuity", "hanging out with Curiosity", "texting Zhurong", "taking with mission control", "visiting Opportunity", "talking with my satilite buddies", "finding water", "trying to find new microbial friends", "trying to produce oxygen"]
-        tweet = random.choice(responses)
+        activity = random.choice(responses)
+        
+        tweet = f'Sorry no new update today, I was busy {activity}. Check back tomorrow! \U0001F44B'
 
         f = open("tweets.txt", "a")
         f.write(f'{d} {tweet}\n\n')
         f.close()
 
-        return(f'Sorry no new update today, I was busy {tweet}. Check back tomorrow! \U0001F44B')
+        return(tweet)
 
     def mainFunction():
         if str(lastdate) == str(date):
@@ -115,8 +117,6 @@ def main():
     f = open("dates.txt", "w")
     f.write(date)
     f.close()
-
-main()
 
 schedule.every().day.at("14:00").do(main)
 
