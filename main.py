@@ -24,6 +24,10 @@ def main():
         auth.set_access_token(access_token, access_token_secret)
         return auth
 
+    #post tweet/status
+    oauth = OAuth()
+    api = tweepy.API(oauth)
+
     #func to parse data
     def funcWeatherJSON():
         weather = requests.get("https://mars.nasa.gov/rss/api/?feed=weather&category=mars2020&feedtype=json")
@@ -108,48 +112,40 @@ def main():
             print(weatherTweet())
             print('weather update posted')
 
-    #post tweet/status
-    oauth = OAuth()
-    api = tweepy.API(oauth)
+    def retweet_function():
+        #get latest tweet id
+        tweets = api.user_timeline(screen_name="NASAPersevere")
+        status = tweets[0]
+        print(status.id)
+        retweet_id = str(status.id)
+
+        #writes lasest tweet's id to last_retweet.txt
+        f = open("last_retweet.txt", "r")
+        last_retweet = f.readline()[0:19]
+
+        #logic to tell if the lastest id is the same as last posted
+        if retweet_id == last_retweet:
+            f = open("tweets.txt", "a")
+            f.write(f'{d} no new retweet today\n\n')
+            f.close()
+        else:
+            #retweet function
+            retweet_response = api.retweet(id=retweet_id)
+            print(retweet_response.text)
+
+            f = open("tweets.txt", "a")
+            f.write(f'{d} retweeted:{status.text} tweetID:{retweet_id}\n\n')
+            f.close()
+
+            f = open("last_retweet.txt", "w")
+            f.write(retweet_id)
+            f.close()
 
     mainFunction()
+    retweet_function()
 
     f = open("dates.txt", "w")
     f.write(date)
-    f.close()
-
-def OAuth():
-    auth=tweepy.OAuthHandler(consumer_key, consumer_secret_key)
-    auth.set_access_token(access_token, access_token_secret)
-    return auth
-
-oauth = OAuth()
-api = tweepy.API(oauth)
-
-#get latest tweet function
-tweets = api.user_timeline(screen_name="NASAPersevere")
-status = tweets[0]
-print(status.id)
-retweet_id = str(status.id)
-
-f = open("last_retweet.txt", "r")
-last_retweet = f.readline()[0:19]
-
-if retweet_id == last_retweet:
-    f = open("tweets.txt", "a")
-    f.write(f'{d} no new retweet today\n\n')
-    f.close()
-else:
-    #retweet function
-    retweet_response = api.retweet(id=retweet_id)
-    print(retweet_response)
-
-    f = open("tweets.txt", "a")
-    f.write(f'{d} retweeted:{status.text} tweetID:{retweet_id}\n\n')
-    f.close()
-
-    f = open("last_retweet.txt", "w")
-    f.write(retweet_id)
     f.close()
 
 schedule.every().day.at("14:00").do(main)
