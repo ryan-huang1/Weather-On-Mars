@@ -156,6 +156,12 @@ def retweet_function():
         f.write(retweet_id)
         f.close()
 
+    f = open("last_retweet.txt", "w")
+    f.write(retweet_id)
+    f.close()
+
+retweet_function()
+
 schedule.every().day.at("14:00").do(main)
 schedule.every(1).hours.do(retweet_function)
 
