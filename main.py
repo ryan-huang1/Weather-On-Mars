@@ -87,7 +87,7 @@ def main():
         return(weatherUpdate)
 
     def noWeatherTweet():
-        responses = ["sending data back to Earth", "fueling rockets", "collecting samples", "saving energy for the storm ahead", "greeting new astronauts", "driving around", "scanning Mars's surface", "taking videos of Ingenuity", "hanging out with Curiosity", "texting Zhurong", "taking with mission control", "visiting Opportunity", "talking with my satilite buddies", "finding water", "trying to find new microbial friends", "trying to produce oxygen"]
+        responses = ["sending data back to Earth", "fueling rockets", "collecting samples", "saving energy for the storm ahead", "greeting new astronauts", "driving around", "scanning Mars's surface", "taking videos of Ingenuity", "hanging out with Curiosity", "texting Zhurong", "taking with mission control", "visiting Opportunity", "talking with my satellite buddies", "finding water", "trying to find new microbial friends", "trying to produce oxygen"]
         activity = random.choice(responses)
         
         tweet = f'Sorry no new update today, I was busy {activity}. Check back tomorrow! \U0001F44B'
@@ -102,11 +102,11 @@ def main():
         if str(lastdate) == str(date):
             api.update_status(noWeatherTweet())
             print(noWeatherTweet())
-            print('no update posted')
+            print('No Weather Update Posted')
         else:
             api.update_status(weatherTweet())
             print(weatherTweet())
-            print('weather update posted')
+            print('Weather Update Posted')
 
     #post tweet/status
     oauth = OAuth()
@@ -138,13 +138,15 @@ def retweet_function():
     last_retweet = f.readline()[0:19]
 
     if retweet_id == last_retweet:
+        print("No New Tweet To Retweet")
+
         f = open("retweets.txt", "a")
-        f.write(f'{d} no new retweet today\n\n')
+        f.write(f'No New Tweet To Retweet\n\n')
         f.close()
     else:
         #retweet function
         retweet_response = api.retweet(id=retweet_id)
-        print(retweet_response)
+        print("New Tweet Retweeted")
 
         f = open("retweets.txt", "a")
         f.write(f'{d} retweeted:{status.text} tweetID:{retweet_id}\n\n')
