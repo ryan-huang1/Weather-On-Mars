@@ -141,7 +141,7 @@ def retweet_function():
         print("No New Tweet To Retweet")
 
         f = open("retweets.txt", "a")
-        f.write(f'No New Tweet To Retweet\n\n')
+        f.write("No New Tweet To Retweet\n\n")
         f.close()
     else:
         #retweet function
