@@ -145,7 +145,7 @@ def retweet_function():
         f.close()
     else:
         #retweet function
-        retweet_response = api.retweet(id=retweet_id)
+        api.retweet(id=retweet_id)
         print("New Tweet Retweeted")
 
         f = open("retweets.txt", "a")
